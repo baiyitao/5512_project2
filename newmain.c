@@ -7,8 +7,9 @@
 
 
 jmp_buf env;
-int tmp = 1;
-int* s = 123;
+
+//int tmp = 1;
+//int* s = 123;
 
 //信号处理函数 
 
@@ -27,13 +28,9 @@ int readAddr(void *p, int *v) {
         signal(SIGSEGV, recvSignal);
         printf("下面要运行可能报段错的代码，如果不报错，就不进入handler直接返回0\n");
 
-
-        
-            v = (int *) (p);
-            printf("output the v in readAddr: %d\n\n", v);
-            
-            return 0;
-        
+        v = (int *) (p);
+        printf("output the v in readAddr: %d\n\n", v);
+        return 0;
 
         //        if (tmp) {
         //            tmp = 0;
@@ -48,22 +45,18 @@ int readAddr(void *p, int *v) {
         //            printf("\n\nok\n\n\n");
         //            tmp = 1;
         //        }
-
-
         //
         //        printf("address of s is %p, :%d\n\n", s, s);
         //        (s)++;
         //        printf("address of s is %p,!!!!!!!!!!!!!!!!!!!!!!\n\n", s);
         //
         //        printf("address of s is %p, :%d\n\n", s, s);
-
         //char *phys_addr = virt_to_phys(p);
-
         //        v = p;
         //
         //        printf("v is %c\n\n\n", v);
         //        printf("address of p is %p, value is :%d\n\n", &p, p);
-        return 0;
+        //        return 0;
     } else {
         //这里是longjmp跳转回来的
         printf("Return from handler.\n");
